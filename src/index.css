@@ -34,9 +34,13 @@ img{
 
 .container-images{
     margin-top: 10px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-left: 24px;
-    padding-bottom: 16px
+}
+.container-images {
+    column-count: 3;
+    column-gap: 10px;
+}
+
+.container-images img {
+    width: 100%; 
+    margin-bottom: 10px;
 }

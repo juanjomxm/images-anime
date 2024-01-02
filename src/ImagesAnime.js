@@ -25,11 +25,6 @@ const apiImagesAnime = axios.create({
       }
     }
   
-    const editAnimeFav = (imageId) => {
-      // Aquí puedes implementar la lógica para editar favoritos
-      console.log(`Editando favorito para la imagen con ID: ${imageId}`)
-    }
-  
     return (
       <div>
         <div className="container-search">
@@ -49,14 +44,11 @@ const apiImagesAnime = axios.create({
 
         <div className="container-images">
           {images.map((image, index) => (
-            <div key={index}>
+            <div key={index} className="images">
               <img 
               src={image.url}
               width={300} 
               height={300} />
-              {/* <button onClick={()=> 
-                editAnimeFav(image.image_id)}>Agregar a favoritos
-              </button> */}
              </div>
           ))}
         </div>
