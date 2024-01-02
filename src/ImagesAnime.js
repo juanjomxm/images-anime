@@ -10,55 +10,54 @@ const apiImagesAnime = axios.create({
     }
   });
   
+  // Componente para renderizar imagenes
   function ImagesAnime(){
-    const [inputCategory, setInputCategory] = React.useState('');
-    const [images, setImages] = React.useState([]);
+    const [inputCategory, setInputCategory] = React.useState('') // Estado para el buscador de las categorias
+    const [images, setImages] = React.useState([]) // Estado que actualiza la peticion de las imagenes y tambien se encarga de renderizar
   
-    const searchCategoryImages = async () => {
-      if (inputCategory) {
-        try {
-          const { data, status } = await apiImagesAnime.get(`/search?many=1&included_tags=${inputCategory}`);
-          if (status === 200) {
-            setImages(data.images);
-          } else {
-            console.log(`Hubo un error: ${status}`);
-          }
-        } catch (error) {
-          console.error('Error al realizar la búsqueda:', error);
-        }
+    const searchCategoryImages = async () => { // Funcion asincrona con la peticion a la api de waifu, para mostrar las imagenes
+
+      const { data, status } = await apiImagesAnime.get(`/search?many=1&included_tags=${inputCategory}`)
+      if (status === 200) {
+        setImages(data.images) // Este actualizador del estado es el encargado de renderizar las imagenes mas adelante
       } else {
-        setImages([]);
+        console.log(`Hubo un error: ${status}`)
       }
-    };
+    }
   
     const editAnimeFav = (imageId) => {
       // Aquí puedes implementar la lógica para editar favoritos
-      console.log(`Editando favorito para la imagen con ID: ${imageId}`);
-    };
+      console.log(`Editando favorito para la imagen con ID: ${imageId}`)
+    }
   
     return (
       <div>
-        <label htmlFor="category-images">Categoría de imágenes:</label>
-        <input
-          type="text"
-          id="category-images"
-          value={inputCategory}
-          onChange={(e) => setInputCategory(e.target.value)}
-        />
-        <button onClick={searchCategoryImages}>Buscar</button>
-  
-        <div id="section-home">
+        <div className="container-search">
+          <input
+            type="text"
+            value={inputCategory}
+            onChange={(e) =>{
+              setInputCategory(e.target.value)
+            } 
+            }
+          />
+          <button 
+          onClick={searchCategoryImages}
+          >Buscar
+          </button>
+        </div>
+
+        <div className="container-images">
           {images.map((image, index) => (
             <div key={index}>
               <img 
-              src={image.url} 
-              alt={`${index + 1}`} 
-              width={400} 
-              height={400} />
-              <button onClick={()=> 
+              src={image.url}
+              width={300} 
+              height={300} />
+              {/* <button onClick={()=> 
                 editAnimeFav(image.image_id)}>Agregar a favoritos
-              </button>
-            </div>
+              </button> */}
+             </div>
           ))}
         </div>
       </div>

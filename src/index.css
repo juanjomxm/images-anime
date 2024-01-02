@@ -1,0 +1,42 @@
+body{
+    background-color: black;
+}
+
+h1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+img{
+    border-radius: 5px;
+}
+
+.container-categories{
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.title-categories{
+    display: flex;
+    align-items: center;
+    color: white
+}
+
+.container-search{
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.container-images{
+    margin-top: 10px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 24px;
+    padding-bottom: 16px
+}
